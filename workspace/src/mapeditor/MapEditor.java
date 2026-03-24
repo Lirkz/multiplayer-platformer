@@ -61,31 +61,26 @@ class MapEditor extends GameBase{
 		Tileset tileset = GameResources.tileset;
 
 		Map<Integer, BufferedImage> images = tileset.getIdImages();
-		PaletteItem[] paletteItems = new PaletteItem[images.size()+1];
+		PaletteItem[] paletteItems = new PaletteItem[images.size()];
 		
 		int i = 0;
 		for(Entry<Integer, BufferedImage> entry: images.entrySet()) {
-			
 			paletteItems[i] = new PaletteItem("item :"+entry.getKey(), entry.getKey(), entry.getValue());
 			i++;
-			if(i==8){
-				paletteItems[8] = new PaletteItem("Enemy", 8, GameResources.enemy);
-				i++;
-			}
 		}
 		
-		
+		//paletteItems[8] = new PaletteItem("Enemy", 8, GameResources.enemy);
 		paletteTiles = new Palette(screenSplit + 15, 10, paletteItems);
 		paletteTiles.setSelectedIndex(0);
 
 		paletteItems = new PaletteItem[1];
-		paletteItems[0] = new PaletteItem("Player", 0, null);
+		paletteItems[0] = new PaletteItem("Player", 0, null); //TODO: Make Enemy part of palette
 		paletteObjects = new Palette(screenSplit + 15, 400, paletteItems);
 
 		map = createNewMap(100, 20, 50);
 
 		jFileChooser = new JFileChooser();
-		jFileChooser.setCurrentDirectory(new File("/workspaces/platformer/workspace/maps"));
+		jFileChooser.setCurrentDirectory(new File(".\\maps\\"));
 	}
 
 	public EditorTiledMap createNewMap(int width, int height, int tileSize) {

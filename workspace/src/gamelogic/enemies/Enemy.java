@@ -14,7 +14,7 @@ public class Enemy extends PhysicsObject{
 	private BufferedImage image;
 	
 	public Enemy(float x, float y, Level level) {
-		super(x, y,(int)(level.getLevelData().getTileSize()*1.5), (int)(level.getLevelData().getTileSize()*1.5), level);
+		super(x, y, 120, 120, level);
 		movementVector.x = walkSpeed;
 		this.hitbox = new RectHitbox(this, 10, 10, width - 10, height - 10);
 		this.image = GameResources.enemy;

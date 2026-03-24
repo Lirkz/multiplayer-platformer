@@ -11,16 +11,14 @@ import gamelogic.level.Level;
 import gamelogic.tiles.Tile;
 
 public class Player extends PhysicsObject{
-	public float walkSpeed = 400;
-	public float jumpPower = 1350;
+	public float walkSpeed = 500;
+	public float jumpPower = 1800;
 
-	private boolean isJumping = false;
+	public boolean isJumping = false;
 
 	public Player(float x, float y, Level level) {
-	
-		super(x, y, level.getLevelData().getTileSize(), level.getLevelData().getTileSize(), level);
-		int offset =(int)(level.getLevelData().getTileSize()*0.1); //hitbox is offset by 10% of the player size.
-		this.hitbox = new RectHitbox(this, offset,offset, width -offset, height - offset);
+		super(x, y, 100, 100, level);
+		this.hitbox = new RectHitbox(this, 10, 10, width - 10, height - 10);
 	}
 
 	@Override
@@ -59,5 +57,9 @@ public class Player extends PhysicsObject{
 		}
 		
 		hitbox.draw(g);
+	}
+	
+	public void boost() {
+		movementVector.y= -jumpPower - jumpPower/2;
 	}
 }

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gameengine.graphics.MyGraphics;
-import gameengine.graphics.MyWindow;
 import gameengine.input.KeyboardInputManager;
 import gameengine.maths.Vector2D;
 
@@ -25,7 +24,7 @@ public class ScreenTransition {
 
 	private String text[];
 	private Rectangle textBox[];
-	private Font font = new Font("Arial", Font.BOLD, Main.SCREEN_WIDTH/10);
+	private Font font = new Font("Arial", Font.BOLD, 200);
 
 	private List<ScreenTransitionListener> listeners = new ArrayList<>();
 
@@ -37,8 +36,8 @@ public class ScreenTransition {
 		text = new String[2];
 
 		textBox = new Rectangle[2];
-		textBox[0] = new Rectangle(MyWindow.getInsetX(), MyWindow.getInsetY()+20, Main.SCREEN_WIDTH, 200);
-		textBox[1] = new Rectangle(MyWindow.getInsetX(), Main.SCREEN_HEIGHT/2, Main.SCREEN_WIDTH, 200);
+		textBox[0] = new Rectangle(0, 100, Main.SCREEN_WIDTH, 200);
+		textBox[1] = new Rectangle(0, 400, Main.SCREEN_WIDTH, 200);
 	}
 
 	public void update(float tslf) {
@@ -74,7 +73,7 @@ public class ScreenTransition {
 			g.translate((int)position.x, (int)position.y);
 			
 			g.setColor(Color.BLACK);
-			g.fillRect(0, 0-MyWindow.getInsetY(), (int)width, (int)height+MyWindow.getInsetY()*2);
+			g.fillRect(0, 0, (int)width, (int)height);
 
 			if(text != null) {
 				g.setColor(Color.WHITE);

@@ -18,8 +18,8 @@ import javax.swing.JFrame;
 
 @SuppressWarnings("serial")
 public class MyWindow extends JFrame {
-	private static int insetX;
-	private static int insetY;
+	private int insetX;
+	private int insetY;
 	private BufferStrategy strat;
 	
 	public MyWindow(String title, int width, int height) {
@@ -27,42 +27,37 @@ public class MyWindow extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setUndecorated(false);
 		this.setVisible(true);
-		
+		this.setResizable(false);
 		
 		setVisible(true);
-		createBufferStrategy(3);
-		strat = null;
+		createBufferStrategy(2);
+		strat = getBufferStrategy();
 		
 		Insets i = getInsets();
 		insetX = i.left;
 		insetY = i.top;
-		this.setResizable(false);
-		this.setSize(width + insetX + i.right, height + insetY + i.bottom);
 		
-
+		this.setSize(width + insetX + i.right, height + insetY + i.bottom);
+		this.setLocationRelativeTo(null);
 	}
 	
-	public BufferStrategy beginDrawing() {
-		strat = getBufferStrategy();
-		while(strat == null){
-			strat = getBufferStrategy();
-		}
-	
-		return strat;
+	public Graphics beginDrawing() {
+		Graphics g = strat.getDrawGraphics();
+		g.translate(insetX, insetY);
+		return g;
 	}
 	
-	// public void endDrawing(Graphics g){
-	// 	g.dispose();
-	// 	strat.show();
-
-	// }
+	public void endDrawing(Graphics g){
+		g.dispose();
+		strat.show();
+	}
 	
 	//---------------------------------------------Getters
-	public static int getInsetX() {
+	public int getInsetX() {
 		return insetX;
 	}
 	
-	public static int getInsetY() {
+	public int getInsetY() {
 		return insetY;
 	}
 }

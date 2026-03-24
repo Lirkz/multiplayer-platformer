@@ -17,8 +17,7 @@ public class Spikes extends Tile{
 	
 	public Spikes(float x, float y, int size, int orientation, Level level) {
 		super(x, y, size, null, true, level);
-		offsetX = (int)(level.getLevelData().getTileSize()*0.1);
-		offsetY = (int)(level.getLevelData().getTileSize()/2);
+		
 		Tileset tileset = GameResources.tileset;
 		
 		switch (orientation) {

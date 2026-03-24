@@ -1,28 +1,26 @@
 package gamelogic;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 
 import gameengine.GameBase;
-import gameengine.graphics.MyWindow;
 import gameengine.input.KeyboardInputManager;
 import gameengine.loaders.LeveldataLoader;
 import gamelogic.level.Level;
-import gamelogic.level.LevelData;
+import gamelogic.level.Leveldata;
 import gamelogic.level.PlayerDieListener;
 import gamelogic.level.PlayerWinListener;
 
 public class Main extends GameBase implements PlayerDieListener, PlayerWinListener, ScreenTransitionListener{
-	public static final int SCREEN_WIDTH = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth()-200;
-	public static final int SCREEN_HEIGHT = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()-200;
+
+	public static final int SCREEN_WIDTH = 1280;
+	public static final int SCREEN_HEIGHT = 860;
 	public static final boolean DEBUGGING = false;
 
 	private ScreenTransition screenTransition = new ScreenTransition();
 
-	private LevelData[] levels;
+	private Leveldata[] levels;
 	private Level currentLevel;
 	private int currentLevelIndex;
 	private boolean active;
@@ -32,7 +30,7 @@ public class Main extends GameBase implements PlayerDieListener, PlayerWinListen
 	private long levelFinishTime;
 	
 	private LevelCompleteBar levelCompleteBar;
-
+	
 	public static void main(String[] args) {
 		Main main = new Main();
 		main.start("Eden Jump", SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -42,12 +40,15 @@ public class Main extends GameBase implements PlayerDieListener, PlayerWinListen
 	public void init() {
 		GameResources.load();
 
-		currentLevelIndex = 0;
+		currentLevelIndex = 4;
 
-		levels = new LevelData[2];
+		levels = new Leveldata[5];
 		try {
-			levels[0] = LeveldataLoader.loadLeveldata("/workspaces/platformer/workspace/maps/testMap.txt");
-			levels[1] = LeveldataLoader.loadLeveldata("/workspaces/platformer/workspace/maps/map1.txt");
+			levels[0] = LeveldataLoader.loadLeveldata(".\\maps\\testMap.txt");
+			levels[1] = LeveldataLoader.loadLeveldata(".\\maps\\map1.txt");
+			levels[2] = LeveldataLoader.loadLeveldata(".\\maps\\gasTest1.txt");
+			levels[3] = LeveldataLoader.loadLeveldata(".\\maps\\springTest.txt");
+			levels[4] = LeveldataLoader.loadLeveldata(".\\maps\\map2.txt");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -126,7 +127,7 @@ public class Main extends GameBase implements PlayerDieListener, PlayerWinListen
 		if(KeyboardInputManager.isKeyDown(KeyEvent.VK_ESCAPE)) System.exit(0);
 
 		if (active) currentLevel.update(tslf);
-
+		
 		screenTransition.update(tslf);
 		
 		levelCompleteBar.update(tslf);
@@ -134,8 +135,8 @@ public class Main extends GameBase implements PlayerDieListener, PlayerWinListen
 
 	@Override
 	public void draw(Graphics g) {
-		
 		drawBackground(g);
+
 		//Camera-translate
 		currentLevel.draw(g);
 		//- Camera-translate
@@ -147,6 +148,6 @@ public class Main extends GameBase implements PlayerDieListener, PlayerWinListen
 
 	public void drawBackground(Graphics g) {
 		g.setColor(Color.WHITE);
-		g.fillRect(0, 0-MyWindow.getInsetY(), SCREEN_WIDTH, SCREEN_HEIGHT+MyWindow.getInsetY()*2);
+		g.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 	}
 }

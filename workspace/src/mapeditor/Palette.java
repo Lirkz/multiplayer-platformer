@@ -56,9 +56,6 @@ class Palette {
 		for (int i = 0; i < paletteItems.length; i++) {
 			BufferedImage image = paletteItems[i].getImage();
 			if(image != null) g.drawImage(image, i % tilesPerRow * tileSize, (int)(i/tilesPerRow) * tileSize, tileSize, tileSize, null);
-			if(paletteItems[i].getName().equals("Player")){
-				g.drawString("PLAYER", i % tilesPerRow * tileSize+2, (int)(i/tilesPerRow) * tileSize+(tileSize/2) );
-			}
 		}
 
 		//outlines

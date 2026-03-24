@@ -4,7 +4,6 @@
 package gameengine;
 
 import java.awt.Graphics;
-import java.awt.image.BufferStrategy;
 
 import gameengine.graphics.MyWindow;
 import gameengine.input.KeyboardInputManager;
@@ -56,17 +55,10 @@ public abstract class GameBase {
 				lastFrame = thisFrame;
 
 				update(tslf); //Calling method update() in the sub-class 
-				BufferStrategy bs = window.beginDrawing();
-				do{
-					do{
-						Graphics g = bs.getDrawGraphics();
-						g.translate(window.getInsetX(), window.getInsetY());
-						draw(g); //Calling method draw() in the sub-class
-						g.dispose();
-					}while(bs.contentsLost());
-					bs.show();
-				}while(bs.contentsLost());
-				
+
+				Graphics g = window.beginDrawing();
+				draw(g); //Calling method draw() in the sub-class
+				window.endDrawing(g);
 			}
 		}
 	}
