@@ -13,12 +13,27 @@ import gamelogic.tiles.Tile;
 public class Player extends PhysicsObject{
 	public float walkSpeed = 500;
 	public float jumpPower = 1800;
-
+	public Color color;
 	public boolean isJumping = false;
+	public PlayerState state;
 
 	public Player(float x, float y, Level level) {
 		super(x, y, 100, 100, level);
 		this.hitbox = new RectHitbox(this, 10, 10, width - 10, height - 10);
+		int randColor = (int)(Math.random()*4);
+		if (randColor == 0) {
+			color = Color.YELLOW;
+		}
+		if (randColor == 1) {
+			color = Color.BLUE;
+		}
+		if (randColor == 2) {
+			color = Color.GREEN;
+		}
+		if (randColor == 3) {
+			color = Color.RED;
+		}
+		state = new PlayerState(this);
 	}
 
 	@Override
@@ -43,7 +58,8 @@ public class Player extends PhysicsObject{
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(Color.YELLOW);
+		state = new PlayerState(this);
+		g.setColor(color);
 		MyGraphics.fillRectWithOutline(g, (int)getX(), (int)getY(), width, height);
 		
 		if(Main.DEBUGGING) {
