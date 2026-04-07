@@ -20,6 +20,7 @@ public class Main extends GameBase implements PlayerDieListener, PlayerWinListen
 
 	private ScreenTransition screenTransition = new ScreenTransition();
 
+	public ConnectionHandler connection;
 	public Color playerColor;
 	
 	private Leveldata[] levels;
@@ -148,6 +149,7 @@ public class Main extends GameBase implements PlayerDieListener, PlayerWinListen
 		screenTransition.update(tslf);
 		
 		levelCompleteBar.update(tslf);
+		connection.player=currentLevel.player;
 	}
 
 	@Override
