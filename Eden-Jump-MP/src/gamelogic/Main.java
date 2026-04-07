@@ -20,6 +20,8 @@ public class Main extends GameBase implements PlayerDieListener, PlayerWinListen
 
 	private ScreenTransition screenTransition = new ScreenTransition();
 
+	public Color playerColor;
+	
 	private Leveldata[] levels;
 	private Level currentLevel;
 	private int currentLevelIndex;
@@ -39,6 +41,20 @@ public class Main extends GameBase implements PlayerDieListener, PlayerWinListen
 	@Override
 	public void init() {
 		GameResources.load();
+		
+		int randColor = (int)(Math.random()*4);
+		if (randColor == 0) {
+			playerColor = Color.YELLOW;
+		}
+		if (randColor == 1) {
+			playerColor = Color.BLUE;
+		}
+		if (randColor == 2) {
+			playerColor = Color.GREEN;
+		}
+		if (randColor == 3) {
+			playerColor = Color.RED;
+		}
 
 		currentLevelIndex = 4;
 
@@ -52,7 +68,7 @@ public class Main extends GameBase implements PlayerDieListener, PlayerWinListen
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		currentLevel = new Level(levels[currentLevelIndex]);
+		currentLevel = new Level(levels[currentLevelIndex],playerColor);
 
 		currentLevel.addPlayerDieListener(this);
 		currentLevel.addPlayerWinListener(this);
@@ -65,6 +81,7 @@ public class Main extends GameBase implements PlayerDieListener, PlayerWinListen
 		levelStartTime = System.currentTimeMillis();
 		
 		levelCompleteBar = new LevelCompleteBar(100, 10, SCREEN_WIDTH - 200, 10, currentLevel.getPlayer());
+		
 	}
 	
 	//-----------------------------------------------------Screen Transition Listener
@@ -113,7 +130,7 @@ public class Main extends GameBase implements PlayerDieListener, PlayerWinListen
 		numberOfTries = 0;
 		if(currentLevelIndex < levels.length-1) {
 			currentLevelIndex++;
-			currentLevel = new Level(levels[currentLevelIndex]);
+			currentLevel = new Level(levels[currentLevelIndex],playerColor);
 
 			currentLevel.addPlayerDieListener(this);
 			currentLevel.addPlayerWinListener(this);

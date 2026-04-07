@@ -17,22 +17,11 @@ public class Player extends PhysicsObject{
 	public boolean isJumping = false;
 	public PlayerState state;
 
-	public Player(float x, float y, Level level) {
+	public Player(float x, float y, Level level, Color color) {
 		super(x, y, 100, 100, level);
 		this.hitbox = new RectHitbox(this, 10, 10, width - 10, height - 10);
-		int randColor = (int)(Math.random()*4);
-		if (randColor == 0) {
-			color = Color.YELLOW;
-		}
-		if (randColor == 1) {
-			color = Color.BLUE;
-		}
-		if (randColor == 2) {
-			color = Color.GREEN;
-		}
-		if (randColor == 3) {
-			color = Color.RED;
-		}
+		this.color=color;
+		
 		state = new PlayerState(this);
 	}
 

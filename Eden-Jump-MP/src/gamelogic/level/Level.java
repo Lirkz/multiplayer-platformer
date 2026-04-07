@@ -1,5 +1,5 @@
 package gamelogic.level;
-
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,8 @@ public class Level {
 	private Enemy[] enemies;
 	public static Player player;
 	private Camera camera;
-
+	public Color playerColor;
+	
 	private boolean active;
 	private boolean playerDead;
 	private boolean playerWin;
@@ -50,12 +51,13 @@ public class Level {
 	private Tileset tileset;
 	public static float GRAVITY = 70;
 
-	public Level(Leveldata leveldata) {
+	public Level(Leveldata leveldata, Color playerColor) {
 		this.leveldata = leveldata;
 		mapdata = leveldata.getMapdata();
 		width = mapdata.getWidth();
 		height = mapdata.getHeight();
 		tileSize = mapdata.getTileSize();
+		this.playerColor = playerColor;
 		restartLevel();
 	}
 
@@ -136,7 +138,7 @@ public class Level {
 			enemies[i] = new Enemy(enemiesList.get(i).getX(), enemiesList.get(i).getY(), this);
 		}
 		player = new Player(leveldata.getPlayerX() * map.getTileSize(), leveldata.getPlayerY() * map.getTileSize(),
-				this);
+				this,playerColor);
 		camera.setFocusedObject(player);
 
 		active = true;
