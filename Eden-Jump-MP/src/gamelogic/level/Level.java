@@ -28,6 +28,7 @@ public class Level {
 	private Map map;
 	private Enemy[] enemies;
 	public static Player player;
+	public static Player2 player2;
 	private Camera camera;
 	public Color playerColor;
 	

@@ -24,7 +24,7 @@ public class Main extends GameBase implements PlayerDieListener, PlayerWinListen
 	public Color playerColor;
 	
 	private Leveldata[] levels;
-	private Level currentLevel;
+	public Level currentLevel;
 	private int currentLevelIndex;
 	private boolean active;
 	
@@ -82,7 +82,9 @@ public class Main extends GameBase implements PlayerDieListener, PlayerWinListen
 		levelStartTime = System.currentTimeMillis();
 		
 		levelCompleteBar = new LevelCompleteBar(100, 10, SCREEN_WIDTH - 200, 10, currentLevel.getPlayer());
-		
+		connection = new ConnectionHandler();
+		connection.main = this;
+		connection.connect();
 	}
 	
 	//-----------------------------------------------------Screen Transition Listener

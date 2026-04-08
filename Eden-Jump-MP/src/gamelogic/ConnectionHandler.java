@@ -2,12 +2,17 @@ package gamelogic;
 
 import java.net.*;
 import gamelogic.player.Player;
+import gamelogic.player.PlayerState;
+
 import java.io.*;
 
 public class ConnectionHandler{
 
+	public Main main;
 	public final int port = 8911;
 	public Player player;
+	public boolean mpActive;
+	public PlayerState player2State;
 	ServerSocket listener;
 	Socket connection;
 	
@@ -35,16 +40,42 @@ public class ConnectionHandler{
 				e.printStackTrace();
 				return;
 			}
-			try {
-				oos.writeObject(player.state);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			while (player!=null) {
+				try {
+					oos.writeObject(player.state);
+					oos.flush();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
+			
 		}
 	}
 	class Reciever extends Thread{
+		public ObjectInputStream ois;
 		
+		public void run() {
+			try {
+				ois = new ObjectInputStream(connection.getInputStream());
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+				return;
+			}
+			while (true) {
+				try {
+					player2State = (PlayerState)ois.readObject();
+					if (!mpActive) {
+						mpActive=true;
+						main.currentLevel.player2 = new Player2(player2State);
+					}
+					main.currentLevel.player2.state = player2State;
+				}
+				catch (IOException | ClassNotFoundException e){
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 	
 }
