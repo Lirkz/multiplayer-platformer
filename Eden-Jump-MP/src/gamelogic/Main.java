@@ -84,7 +84,7 @@ public class Main extends GameBase implements PlayerDieListener, PlayerWinListen
 		levelCompleteBar = new LevelCompleteBar(100, 10, SCREEN_WIDTH - 200, 10, currentLevel.getPlayer());
 		connection = new ConnectionHandler();
 		connection.main = this;
-		connection.connect();
+		connection.start();
 	}
 	
 	//-----------------------------------------------------Screen Transition Listener

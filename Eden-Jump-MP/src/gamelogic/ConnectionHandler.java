@@ -1,12 +1,14 @@
 package gamelogic;
 
 import java.net.*;
+
+import gamelogic.level.Level;
 import gamelogic.player.Player;
 import gamelogic.player.PlayerState;
-
+import gamelogic.player.Player2;
 import java.io.*;
 
-public class ConnectionHandler{
+public class ConnectionHandler extends Thread{
 
 	public Main main;
 	public final int port = 8911;
@@ -16,7 +18,7 @@ public class ConnectionHandler{
 	ServerSocket listener;
 	Socket connection;
 	
-	public void connect(){
+	public void run(){
 		try {
             listener = new ServerSocket(port);
             System.out.println("Listening on port " + port);
@@ -28,7 +30,7 @@ public class ConnectionHandler{
         }
 		new Sender().start();
 		new Reciever().start();
-		
+		this.interrupt();
 	}
 	class Sender extends Thread{
 		public ObjectOutputStream oos;
@@ -67,9 +69,9 @@ public class ConnectionHandler{
 					player2State = (PlayerState)ois.readObject();
 					if (!mpActive) {
 						mpActive=true;
-						main.currentLevel.player2 = new Player2(player2State);
+						Level.player2 = new Player2(player2State.x,player2State.y,null, player2State.color,player2State,main);
 					}
-					main.currentLevel.player2.state = player2State;
+					Level.player2.state = player2State;
 				}
 				catch (IOException | ClassNotFoundException e){
 					e.printStackTrace();

@@ -12,6 +12,7 @@ import gamelogic.GameResources;
 import gamelogic.Main;
 import gamelogic.enemies.Enemy;
 import gamelogic.player.Player;
+import gamelogic.player.Player2;
 import gamelogic.tiledMap.Map;
 import gamelogic.tiles.Flag;
 import gamelogic.tiles.Flower;

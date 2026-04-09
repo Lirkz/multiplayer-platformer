@@ -1,5 +1,5 @@
 package gamelogic.tiles;
-
+import gamelogic.player.Player2;
 import java.awt.image.BufferedImage;
 
 import gameengine.hitbox.RectHitbox;
@@ -15,7 +15,7 @@ public class Flag extends Tile{
 	@Override
 	public void update(float tslf) {
 		if(hitbox.isIntersecting(Level.player.getHitbox())) level.onPlayerWin();
-		if(hitbox.isIntersecting(Level.player2.getHitbox())) level.onPlayerWin();
+		if(Level.player2 != null && hitbox.isIntersecting(Level.player2.getHitbox())) level.onPlayerWin();
 	}
 	
 }

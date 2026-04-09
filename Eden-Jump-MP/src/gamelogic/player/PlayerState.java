@@ -8,9 +8,13 @@ public class PlayerState implements Serializable {
 	public Player player;
 	public Color color;
 	public RectHitbox hitbox;
-	int x;
-	int y;
+	public int x;
+	public int y;
+	static final long serialVersionUID = 1L;
 	
+	public PlayerState() {
+		
+	}
 	
 	public PlayerState(Player player) {
 		this.player=player;
