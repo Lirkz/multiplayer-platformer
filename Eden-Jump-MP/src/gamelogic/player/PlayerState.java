@@ -6,7 +6,6 @@ import java.io.Serializable;
 
 public class PlayerState implements Serializable {
 	public Color color;
-	public RectHitbox hitbox;
 	public int x;
 	public int y;
 	static final long serialVersionUID = 1L;
@@ -15,10 +14,9 @@ public class PlayerState implements Serializable {
 		
 	}
 	
-	public PlayerState(Color c, int x, int y, RectHitbox hitbox) {
+	public PlayerState(Color c, int x, int y) {
 		color = c;
 		this.x=x;
 		this.y=y;
-		this.hitbox=hitbox;
 	}
 }

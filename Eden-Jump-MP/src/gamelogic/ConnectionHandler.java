@@ -66,9 +66,10 @@ public class ConnectionHandler extends Thread{
 					player2State = (PlayerState)ois.readObject();
 					if (!mpActive) {
 						mpActive=true;
-						Level.player2 = new Player2(player2State.x,player2State.y,null, player2State.color,player2State,main);
+						Level.player2 = new Player2(player2State.x,player2State.y,null, player2State.color,main);
 					}
-					Level.player2.state = player2State;
+					
+					
 				}
 				catch (IOException | ClassNotFoundException e){
 					e.printStackTrace();

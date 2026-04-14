@@ -151,7 +151,7 @@ public class Main extends GameBase implements PlayerDieListener, PlayerWinListen
 		screenTransition.update(tslf);
 		
 		levelCompleteBar.update(tslf);
-		connection.player=currentLevel.player;
+		connection.player=Level.player;
 	}
 
 	@Override

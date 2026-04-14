@@ -23,7 +23,7 @@ public class Player extends PhysicsObject implements Serializable{
 		this.hitbox = new RectHitbox(this, 10, 10, width - 10, height - 10);
 		this.color=color;
 		
-		state = new PlayerState(this.color,(int)this.getX(), (int)this.getY(), this.getHitbox());
+		state = new PlayerState(this.color,(int)this.getX(), (int)this.getY());
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class Player extends PhysicsObject implements Serializable{
 
 	@Override
 	public void draw(Graphics g) {
-		state = new PlayerState(this.color,(int)this.getX(), (int)this.getY(), this.getHitbox());
+		state = new PlayerState(this.color,(int)this.getX(), (int)this.getY());
 		g.setColor(color);
 		MyGraphics.fillRectWithOutline(g, (int)getX(), (int)getY(), width, height);
 		

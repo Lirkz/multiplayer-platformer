@@ -15,14 +15,11 @@ public class Player2 extends PhysicsObject{
 	public float jumpPower = 1800;
 	public Color color;
 	public boolean isJumping = false;
-	public PlayerState state;
 
-	public Player2(float x, float y, Level level, Color color, PlayerState state,Main main) {
+	public Player2(float x, float y, Level level, Color color,Main main) {
 		super(x, y, 100, 100, main.currentLevel);
 		this.hitbox = new RectHitbox(this, 10, 10, width - 10, height - 10);
 		this.color=color;
-		
-		this.state = state;
 	}
 
 	@Override

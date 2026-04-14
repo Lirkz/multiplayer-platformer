@@ -164,7 +164,10 @@ public class Level {
 		if (active) {
 			// Update the player
 			player.update(tslf);
-
+			if (player2!=null) {
+				player2.update(tslf);
+			}
+			
 			// Player death
 			if (map.getFullHeight() + 100 < player.getY())
 				onPlayerDeath();
@@ -444,7 +447,9 @@ public class Level {
 
 	   	 // Draw the player
 	   	 player.draw(g);
-
+	   	 if (player2!=null) {
+	   		 player2.draw(g);
+	   	 }
 
 
 
