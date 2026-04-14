@@ -1,6 +1,8 @@
 package gameengine.maths;
 
-public class Vector2D {
+import java.io.Serializable;
+
+public class Vector2D implements Serializable {
 
 	public float x;
 	public float y;

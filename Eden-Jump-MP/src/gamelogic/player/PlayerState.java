@@ -15,7 +15,7 @@ public class PlayerState implements Serializable {
 		
 	}
 	
-	public PlayerState(Color c, int x, int y, RectHitbox hitbox) {;
+	public PlayerState(Color c, int x, int y, RectHitbox hitbox) {
 		color = c;
 		this.x=x;
 		this.y=y;

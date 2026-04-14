@@ -2,13 +2,14 @@ package gamelogic.tiles;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
 import gameengine.GameObject;
 import gameengine.hitbox.RectHitbox;
 import gameengine.maths.Vector2D;
 import gamelogic.level.Level;
 
-public class Tile{
+public class Tile implements Serializable{
 
 	protected Vector2D position;
 	protected int size;

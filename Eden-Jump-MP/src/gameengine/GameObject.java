@@ -1,10 +1,11 @@
 package gameengine;
 
 import java.awt.Graphics;
+import java.io.Serializable;
 
 import gameengine.maths.Vector2D;
 
-public class GameObject {
+public class GameObject implements Serializable {
 
 	protected Vector2D position;
 	protected int width;

@@ -2,6 +2,7 @@ package gamelogic.player;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
 import gameengine.PhysicsObject;
 import gameengine.graphics.MyGraphics;
@@ -10,7 +11,7 @@ import gamelogic.Main;
 import gamelogic.level.Level;
 import gamelogic.tiles.Tile;
 
-public class Player extends PhysicsObject{
+public class Player extends PhysicsObject implements Serializable{
 	public float walkSpeed = 500;
 	public float jumpPower = 1800;
 	public Color color;
