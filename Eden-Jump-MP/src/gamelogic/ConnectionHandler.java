@@ -15,14 +15,11 @@ public class ConnectionHandler extends Thread{
 	public Player player;
 	public boolean mpActive;
 	public PlayerState player2State;
-	ServerSocket listener;
 	Socket connection;
 	
 	public void run(){
 		try {
-            listener = new ServerSocket(port);
-            System.out.println("Listening on port " + port);
-            connection = listener.accept();
+            connection = new Socket(InetAddress.getLocalHost().getHostName(),port);
         }
         catch (Exception e) {
             System.out.println("Connection Failed: " + e);
@@ -30,7 +27,6 @@ public class ConnectionHandler extends Thread{
         }
 		new Sender().start();
 		new Reciever().start();
-		this.interrupt();
 	}
 	class Sender extends Thread{
 		public ObjectOutputStream oos;
@@ -44,7 +40,8 @@ public class ConnectionHandler extends Thread{
 			}
 			while (player!=null) {
 				try {
-					oos.writeObject(player.state);
+					PlayerState state = player.state;
+					oos.writeObject(state);
 					oos.flush();
 				} catch (IOException e) {
 					e.printStackTrace();

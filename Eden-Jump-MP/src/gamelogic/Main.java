@@ -57,7 +57,7 @@ public class Main extends GameBase implements PlayerDieListener, PlayerWinListen
 			playerColor = Color.RED;
 		}
 
-		currentLevelIndex = 4;
+		currentLevelIndex = 2;
 
 		levels = new Leveldata[5];
 		try {
@@ -143,7 +143,7 @@ public class Main extends GameBase implements PlayerDieListener, PlayerWinListen
 
 	@Override
 	public void update(float tslf) {
-		if(KeyboardInputManager.isKeyDown(KeyEvent.VK_N)) init();
+		//if(KeyboardInputManager.isKeyDown(KeyEvent.VK_N)) init();
 		if(KeyboardInputManager.isKeyDown(KeyEvent.VK_ESCAPE)) System.exit(0);
 
 		if (active) currentLevel.update(tslf);

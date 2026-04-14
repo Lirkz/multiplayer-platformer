@@ -5,7 +5,6 @@ import gameengine.hitbox.RectHitbox;
 import java.io.Serializable;
 
 public class PlayerState implements Serializable {
-	public Player player;
 	public Color color;
 	public RectHitbox hitbox;
 	public int x;
@@ -16,8 +15,7 @@ public class PlayerState implements Serializable {
 		
 	}
 	
-	public PlayerState(Player player) {
-		this.player=player;
+	public PlayerState(Player player) {;
 		color = player.color;
 		x=(int)player.getX();
 		y=(int)player.getY();
