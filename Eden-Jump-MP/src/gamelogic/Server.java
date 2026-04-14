@@ -38,7 +38,7 @@ public class Server {
     		if (player1C==this) {
     			try {
 					ois = new ObjectInputStream(socket.getInputStream());
-					oos = new ObjectOutputStream(socket.getOutputStream());
+					oos = new ObjectOutputStream(player2C.socket.getOutputStream());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -56,7 +56,7 @@ public class Server {
     		}
     		else {
     			try {
-    				oos = new ObjectOutputStream(socket.getOutputStream());
+    				oos = new ObjectOutputStream(player1C.socket.getOutputStream());
 					ois = new ObjectInputStream(socket.getInputStream());
 					
 				} catch (IOException e) {

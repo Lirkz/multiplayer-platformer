@@ -15,10 +15,10 @@ public class PlayerState implements Serializable {
 		
 	}
 	
-	public PlayerState(Player player) {;
-		color = player.color;
-		x=(int)player.getX();
-		y=(int)player.getY();
-		hitbox=player.getHitbox();
+	public PlayerState(Color c, int x, int y, RectHitbox hitbox) {;
+		color = c;
+		this.x=x;
+		this.y=y;
+		this.hitbox=hitbox;
 	}
 }
