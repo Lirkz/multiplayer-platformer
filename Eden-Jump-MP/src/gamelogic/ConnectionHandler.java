@@ -30,7 +30,6 @@ public class ConnectionHandler extends Thread{
 	}
 	class Sender extends Thread{
 		public ObjectOutputStream oos;
-		public Player storedPlayer = player;
 		
 		public void run() {
 			try {
@@ -41,7 +40,7 @@ public class ConnectionHandler extends Thread{
 			}
 			while (player!=null) {
 				try {
-					PlayerState state = storedPlayer.state;
+					PlayerState state = player.state;
 					oos.writeObject(state);
 					oos.flush();
 				} catch (IOException e) {
