@@ -13,7 +13,6 @@ public class ConnectionHandler extends Thread{
 	public Main main;
 	public final int port = 8911;
 	public Player player;
-	public boolean mpActive;
 	public PlayerState player2State;
 	Socket connection;
 	
@@ -40,10 +39,14 @@ public class ConnectionHandler extends Thread{
 			}
 			while (player!=null) {
 				try {
-					PlayerState state = player.state;
+					Thread.sleep(500);
+		 			PlayerState state = player.state;
 					oos.writeObject(state);
 					oos.flush();
-				} catch (IOException e) {
+				}catch(SocketException e){
+					System.out.println("other player not here");
+				}
+				catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
@@ -64,10 +67,7 @@ public class ConnectionHandler extends Thread{
 			while (true) {
 				try {
 					player2State = (PlayerState)ois.readObject();
-					if (!mpActive) {
-						mpActive=true;
-						Level.player2 = new Player2(player2State.x,player2State.y,null, player2State.color,main);
-					}
+					Level.player2 = new Player2(player2State.x,player2State.y,null, player2State.color,main);
 					
 					
 				}

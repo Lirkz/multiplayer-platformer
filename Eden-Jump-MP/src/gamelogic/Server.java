@@ -10,6 +10,7 @@ public class Server {
     private static int port = 8911;
     public static Connection player1C;
     public static Connection player2C;
+    public static boolean p2Started=false;
     
     public static void main(String args[]) throws IOException, ClassNotFoundException{
         //create the socket server object
@@ -35,7 +36,11 @@ public class Server {
     	}
     	
     	public void run() {
+    		
     		if (player1C==this) {
+    			while (!p2Started) {
+        			
+        		}
     			try {
 					ois = new ObjectInputStream(socket.getInputStream());
 					oos = new ObjectOutputStream(player2C.socket.getOutputStream());
@@ -55,10 +60,11 @@ public class Server {
     			}
     		}
     		else {
+    			
     			try {
-    				oos = new ObjectOutputStream(player1C.socket.getOutputStream());
-					ois = new ObjectInputStream(socket.getInputStream());
-					
+    				ois = new ObjectInputStream(socket.getInputStream());
+    				oos = new ObjectOutputStream(player1C.socket.getOutputStream());	
+    				p2Started=true;
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
