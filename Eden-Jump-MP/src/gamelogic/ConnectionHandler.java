@@ -39,7 +39,7 @@ public class ConnectionHandler extends Thread{
 			}
 			while (player!=null) {
 				try {
-					Thread.sleep(500);
+					Thread.sleep(50);
 		 			PlayerState state = player.state;
 					oos.writeObject(state);
 					oos.flush();
@@ -68,8 +68,6 @@ public class ConnectionHandler extends Thread{
 				try {
 					player2State = (PlayerState)ois.readObject();
 					Level.player2 = new Player2(player2State.x,player2State.y,null, player2State.color,main);
-					
-					
 				}
 				catch (IOException | ClassNotFoundException e){
 					e.printStackTrace();
@@ -77,5 +75,4 @@ public class ConnectionHandler extends Thread{
 			}
 		}
 	}
-	
 }
