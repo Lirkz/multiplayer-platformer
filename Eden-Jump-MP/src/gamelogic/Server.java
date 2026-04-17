@@ -27,12 +27,23 @@ public class Server {
     
     static class Connection extends Thread{
     	
-    	public ObjectOutputStream oos;
-    	public ObjectInputStream ois;
+    	private ObjectOutputStream oos;
+    	private ObjectInputStream ois;
     	Socket socket;
     	
     	public Connection(Socket s) {
     		socket=s;
+    	}
+    	
+    	public void doneSetup(Connection c) {
+    		
+    		try {
+    			c.oos.writeObject("ready");
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     	}
     	
     	public void run() {
@@ -43,6 +54,7 @@ public class Server {
     				System.out.println("test");
 					ois = new ObjectInputStream(socket.getInputStream());
 					oos = new ObjectOutputStream(player2C.socket.getOutputStream());
+					doneSetup(this);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -62,6 +74,7 @@ public class Server {
     			try {
     				ois = new ObjectInputStream(socket.getInputStream());
     				oos = new ObjectOutputStream(player1C.socket.getOutputStream());	
+    				doneSetup(this);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

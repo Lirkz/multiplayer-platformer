@@ -168,6 +168,10 @@ public class Level {
 				player2.update(tslf);
 			}
 			
+			while (player2!=null && player.getHitbox().isIntersecting(player2.getHitbox())) {
+				
+			}
+			
 			// Player death
 			if (map.getFullHeight() + 100 < player.getY())
 				onPlayerDeath();

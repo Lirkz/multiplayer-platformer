@@ -39,7 +39,7 @@ public class ConnectionHandler extends Thread{
 			}
 			while (player!=null) {
 				try {
-					Thread.sleep(50);
+					//Thread.sleep(50);
 		 			PlayerState state = player.state;
 					oos.writeObject(state);
 					oos.flush();
@@ -63,6 +63,12 @@ public class ConnectionHandler extends Thread{
 			catch (IOException e) {
 				e.printStackTrace();
 				return;
+			}
+			try {
+				String str = (String)ois.readObject();
+				while (!str.equals("ready")) {}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 			while (true) {
 				try {
