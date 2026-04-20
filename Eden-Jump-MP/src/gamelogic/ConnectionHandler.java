@@ -42,7 +42,6 @@ public class ConnectionHandler extends Thread{
 				try {
 					Thread.sleep(50);
 					while (!str.equals("ready")) {}
-					System.out.println("sending");
 		 			PlayerState state = player.state;
 					oos.writeObject(state);
 					oos.flush();
@@ -69,13 +68,11 @@ public class ConnectionHandler extends Thread{
 			}
 			try {
 				str = (String)ois.readObject();
-				//System.out.println(str);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			while (true) {
 				try {
-					
 					player2State = (PlayerState)ois.readObject();
 					Level.player2 = new Player2(player2State.x,player2State.y,null, player2State.color,main);
 				}
