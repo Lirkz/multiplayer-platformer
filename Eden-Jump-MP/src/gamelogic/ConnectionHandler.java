@@ -11,10 +11,11 @@ import java.io.*;
 public class ConnectionHandler extends Thread{
 
 	public Main main;
-	public final int port = 8911;
+	public final int port = 8910;
 	public Player player;
 	public PlayerState player2State;
 	Socket connection;
+	String str = "";
 	
 	public void run(){
 		try {
@@ -39,7 +40,9 @@ public class ConnectionHandler extends Thread{
 			}
 			while (player!=null) {
 				try {
-					//Thread.sleep(50);
+					Thread.sleep(50);
+					while (!str.equals("ready")) {}
+					System.out.println("sending");
 		 			PlayerState state = player.state;
 					oos.writeObject(state);
 					oos.flush();
@@ -65,13 +68,14 @@ public class ConnectionHandler extends Thread{
 				return;
 			}
 			try {
-				String str = (String)ois.readObject();
-				while (!str.equals("ready")) {}
+				str = (String)ois.readObject();
+				//System.out.println(str);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			while (true) {
 				try {
+					
 					player2State = (PlayerState)ois.readObject();
 					Level.player2 = new Player2(player2State.x,player2State.y,null, player2State.color,main);
 				}

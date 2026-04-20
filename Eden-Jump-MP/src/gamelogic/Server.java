@@ -7,7 +7,7 @@ import java.io.*;
 public class Server {
 	private static ServerSocket server;
     //socket server port on which it will listen
-    private static int port = 8911;
+    private static int port = 8910;
     public static Connection player1C;
     public static Connection player2C;
    
@@ -39,7 +39,7 @@ public class Server {
     		
     		try {
     			c.oos.writeObject("ready");
-				
+    			System.out.println("test");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -51,7 +51,7 @@ public class Server {
     		if (player1C==this) {
     			
     			try {
-    				System.out.println("test");
+    				
 					ois = new ObjectInputStream(socket.getInputStream());
 					oos = new ObjectOutputStream(player2C.socket.getOutputStream());
 					doneSetup(this);

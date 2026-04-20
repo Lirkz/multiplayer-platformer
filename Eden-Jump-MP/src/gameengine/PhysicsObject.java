@@ -40,17 +40,12 @@ public class PhysicsObject extends GameObject{
 		Tile bot = collisionMatrix[BOT];
 		// TOMORROW: CHECK PLAYER HITBOX AGAINST PLAYER2 HITBOX AS WELL
 		if(bot != null) {
-			if (Level.player2!= null) {
-				if (!(Level.player.getHitbox().getY()<Level.player2.getHitbox().getY()) && Level.player.getHitbox().isIntersecting(Level.player2.getHitbox())) {
-					position.y = bot.getHitbox().getY() - (hitbox.getOffsetY() + hitbox.getHeight());
-					movementVector.y = 0;
-				}
-			}else {
-				position.y = bot.getHitbox().getY() - (hitbox.getOffsetY() + hitbox.getHeight());
-				movementVector.y = 0;
-			}
+			position.y = bot.getHitbox().getY() - (hitbox.getOffsetY() + hitbox.getHeight());
+			movementVector.y = 0;
 			
+
 		}
+			
 		Tile top = collisionMatrix[TOP];
 		if(top != null) {
 			position.y = (top.getHitbox().getY() + top.getHitbox().getHeight()) - hitbox.getOffsetY();
